@@ -58,6 +58,10 @@ Encontrar analíticamente el estimador de máxima verosimilitud para $\beta_0,\b
 
 Observación: Si te sentís cómodo usando LaTex, podés hacer el desarrollo acá abajo.
 
+$$
+L(\beta_0 , \beta_1) = \prod_{i=1}^n f_{\beta_0 , \beta_1}(x_i)= \prod_{i=1}^n \mathcal{N}(-\beta_0 +\beta_1 .x_i, \sigma) =  \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(y_i-\beta_0 +\beta_1 .x_i)^2}
+$$
+
 ##### b. (Opcional) ¿El resultado les resulta conocido?
 
 Tip: Puede que se parezca mucho a algo que vieron en Álgebra...
@@ -96,7 +100,13 @@ hist(XY[, 2], main = "Histograma de happiness", freq = FALSE) # Graficamos la co
 
 ¿Qué pueden decir a partir de estos gráficos? Vincular con el modelo propuesto
 
-Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), equivale al sistema lineal
+
+Se puede decir, observando el scatter plot, que la variable `income` y `happiness` tienen una relación lineal positiva. Es decir, a medida que aumenta el ingreso, aumenta la felicidad. 
+Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), equivale al sistema lineal de dos ecuaciones con dos incógnitas. Por lo tanto, se puede resolver el sistema y obtener los valores de $\beta_0$ y $\beta_1$.
+
+Luego, en el histrograma de `income` se puede observar que la distribución de los datos aparenta tener una distribucion uniforme, con algunas perturbaciones.
+
+Finalmente, en el histograma de `happiness` se puede observar que los datos distribuyen de forma similar a los datos de una distribucion normal. ya que posee una mayor densidad en el centro y en los extremos la densidad disminuye.
 
 $$
 Y = \beta_0 + \beta_1 X + \varepsilon
