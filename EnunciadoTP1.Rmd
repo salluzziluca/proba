@@ -1,0 +1,123 @@
+---
+title: "Trabajo Práctino Nº1"
+subtitle: "Estimadores de Máxima Verosimilitud"
+output: pdf_document
+---
+
+# Trabajo Práctico Nº1
+
+## Estimadores de Máxima Verosimilitud
+
+Nro. de grupo:
+
+Integrantes:
+
+-   Apellido, Nombre. Padrón
+
+-   Apellido, Nombre. Padrón
+
+### Condiciones de entrega
+
+El trabajo práctico debe realizarse en grupos de 2 personas. Para la entrega del TP deben subir:
+
+-   Este notebook
+
+-   En caso de resolverlo por fuera del notebook, un archivo en formato **pdf** con los cálculos analíticos solicitados.
+
+-   Una versión en pdf del notebook (para poder hacer correcciones)
+
+### Enunciado: Estimación de coeficientes de una regresión lineal
+
+Un problema muy común en la estadística es el de estimación. En este caso, tendremos una variable objetivo, $Y$, que se desea estimar a partir de $r$ variables observables, $X_1, X_2, \ldots, X_r$. Un modelo de regresión lineal para este problema será de la forma
+
+$$
+Y = \beta_0+\beta_1X_1 + \beta_2X_2+\ldots+\beta_rX_r + \varepsilon,
+$$
+
+donde $\varepsilon$ es un término de error que podemos suponer sigue una distribución Normal de media 0 y varianza desconocida $\sigma_\varepsilon^2$.
+
+El objetivo del problema de regresión lineal resulta hallar los valores óptimos para $\beta_0, \beta_1,\ldots,\beta_r$ a partir de $n$ observaciones del vector aleatorio $(Y,X_1,\ldots,X_r)$. Una forma de hacerlo es a partir del estimador de máxima verosimilitud.
+
+Para ello debemos observar que dada una observación $\boldsymbol{x} = (x_1,\ldots, x_r)$, la distribución condicional de $Y$ para a ser también Normal:
+
+$$
+Y|\boldsymbol{X}=\boldsymbol{x} \sim \mathcal{N}(\beta_0+\beta_1x_1+\ldots+\beta_rx_r, \sigma_\varepsilon^2)
+$$
+
+#### 1. Ejercicio 1
+
+Consideren un modelo de regresión lineal a partir 1 variable predictora, que tiene la forma
+
+$$
+Y = \beta_0 + \beta_1X_1 +\varepsilon
+$$
+
+##### a. Estimador de máxima verosimilitud
+
+Encontrar analíticamente el estimador de máxima verosimilitud para $\beta_0,\beta_1$, a partir de una muestra aleatoria de tamaño $n$.
+
+Observación: Si te sentís cómodo usando LaTex, podés hacer el desarrollo acá abajo.
+
+##### b. (Opcional) ¿El resultado les resulta conocido?
+
+Tip: Puede que se parezca mucho a algo que vieron en Álgebra...
+
+#### 2. Ejercicio 2
+
+Probemos ahora cómo funciona esto con un conjunto de datos. Vamos a usar el dataset [`Income`](https://www.scribbr.com/wp-content/uploads//2020/02/income.data_.zip), que mide la felicidad en función del salario. Si vas a descargar el archivo desde el link, recordá mover el archivo csv dentro de la misma carpeta que el notebook. Para cargarlo, vamos a usar la función `read_csv`.
+
+```{r}
+XY <- read.csv('income.data.csv', row.names=1)
+```
+
+A continuación vamos a visualizar un reumen de los mismos usando la función `summary`, donde podemos ver algunos valores representativos de cada variable, como valor mínimo, máximo y los cuatro cuartiles.
+
+```{r}
+summary(XY)
+```
+
+Grafiquemos los datos en un *scatter plot:*
+
+```{r}
+plot(XY)
+```
+
+Podemos graficar también un histograma de cada una de las variables, para conocer un poco mejor su distribución. Esto lo podemos hace con la función `hist`
+
+```{r}
+hist(XY[,1], main='Histograma de income', freq=FALSE) # Graficamos la columna income
+```
+
+```{r}
+hist(XY[,2], main='Histograma de happiness', freq=FALSE) # Graficamos la columna happiness
+```
+
+##### a. Análisis de los gráficos
+
+¿Qué pueden decir a partir de estos gráficos? Vincular con el modelo propuesto
+
+Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), equivale al sistema lineal
+
+$$
+Y = \beta_0 + \beta_1 X + \varepsilon
+$$
+
+##### b. Estimación de $\beta_0$ y $\beta_1$ usando R
+
+Usar las herramientas de R para calcular una estimación de los valores de $\beta_0$ y $\beta_1$ basada en los datos cargados. Podés hacer esto en la siguente celda. Remplazá los valores de `NULL` por las expresiones correspondientes, también podes agregar cálculos auxiliares en líneas anteriores.
+
+```{r}
+beta0 = NULL 
+beta1 = NULL
+```
+
+Graficar nuevamente los datos y superponer la recta estimada a partir de los valores de $\hat\beta_0$ y $\hat\beta_1$ hallados.
+
+```{r}
+plot(XY)
+abline(a=beta0, b=beta1, col='aquamarine3', lw=3)
+```
+
+### Conclusiones
+
+Usen este espacio para finalizar el trabajo práctico con sus comentarios y conclusiones finales.
