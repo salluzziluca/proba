@@ -117,8 +117,10 @@ $$
 Usar las herramientas de R para calcular una estimación de los valores de $\beta_0$ y $\beta_1$ basada en los datos cargados. Podés hacer esto en la siguente celda. Remplazá los valores de `NULL` por las expresiones correspondientes, también podes agregar cálculos auxiliares en líneas anteriores.
 
 ```{r}
-beta0 <- NULL
-beta1 <- NULL
+beta1 <- sum((XY$income - mean(XY$income)) * (XY$happiness - mean(XY$happiness))) / sum((XY$income - mean(XY$income))^2)
+
+
+beta0 <- sum(XY$happiness) / nrow(XY) - beta1 * sum(XY$income) / nrow(XY)
 ```
 
 Graficar nuevamente los datos y superponer la recta estimada a partir de los valores de $\hat\beta_0$ y $\hat\beta_1$ hallados.
