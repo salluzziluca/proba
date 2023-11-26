@@ -12,9 +12,9 @@ Nro. de grupo:
 
 Integrantes:
 
--   Apellido, Nombre. Padrón
+-   De Luca, Francisco. 109794
 
--   Apellido, Nombre. Padrón
+-   Salluzzi, Luca. 108088
 
 ### Condiciones de entrega
 
@@ -67,7 +67,7 @@ Tip: Puede que se parezca mucho a algo que vieron en Álgebra...
 Probemos ahora cómo funciona esto con un conjunto de datos. Vamos a usar el dataset [`Income`](https://www.scribbr.com/wp-content/uploads//2020/02/income.data_.zip), que mide la felicidad en función del salario. Si vas a descargar el archivo desde el link, recordá mover el archivo csv dentro de la misma carpeta que el notebook. Para cargarlo, vamos a usar la función `read_csv`.
 
 ```{r}
-XY <- read.csv('income.data.csv', row.names=1)
+XY <- read.csv("income.data.csv", row.names = 1)
 ```
 
 A continuación vamos a visualizar un reumen de los mismos usando la función `summary`, donde podemos ver algunos valores representativos de cada variable, como valor mínimo, máximo y los cuatro cuartiles.
@@ -85,11 +85,11 @@ plot(XY)
 Podemos graficar también un histograma de cada una de las variables, para conocer un poco mejor su distribución. Esto lo podemos hace con la función `hist`
 
 ```{r}
-hist(XY[,1], main='Histograma de income', freq=FALSE) # Graficamos la columna income
+hist(XY[, 1], main = "Histograma de income", freq = FALSE) # Graficamos la columna income
 ```
 
 ```{r}
-hist(XY[,2], main='Histograma de happiness', freq=FALSE) # Graficamos la columna happiness
+hist(XY[, 2], main = "Histograma de happiness", freq = FALSE) # Graficamos la columna happiness
 ```
 
 ##### a. Análisis de los gráficos
@@ -107,15 +107,15 @@ $$
 Usar las herramientas de R para calcular una estimación de los valores de $\beta_0$ y $\beta_1$ basada en los datos cargados. Podés hacer esto en la siguente celda. Remplazá los valores de `NULL` por las expresiones correspondientes, también podes agregar cálculos auxiliares en líneas anteriores.
 
 ```{r}
-beta0 = NULL 
-beta1 = NULL
+beta0 <- NULL
+beta1 <- NULL
 ```
 
 Graficar nuevamente los datos y superponer la recta estimada a partir de los valores de $\hat\beta_0$ y $\hat\beta_1$ hallados.
 
 ```{r}
 plot(XY)
-abline(a=beta0, b=beta1, col='aquamarine3', lw=3)
+abline(a = beta0, b = beta1, col = "aquamarine3", lw = 3)
 ```
 
 ### Conclusiones
