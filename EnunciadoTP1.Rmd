@@ -63,8 +63,10 @@ L(\beta_0 , \beta_1) = \prod_{i=1}^n f_{\beta_0 , \beta_1}(x_i)= \prod_{i=1}^n \
 $$
 
 ##### b. (Opcional) ¿El resultado les resulta conocido?
+Una vez finalizdo el trabajo nos dimos cuenta que la obtencion del EMV es similar a un problema de cuadrados minimos, ya que si en vez de despejar $\beta_0$ y $\beta_1$ de las ecuaciones como hicimos, se puede plantear un sistema de la forma:
+$A.x=b$ 
+Donde $A$ es una matriz de dimensiones $n \times 2$, x es de dimensiones $2 \times 1$ y $b$ es de $n \times 1$. Una vez obtenido esto como el sistema no tiene solucion se puede multiplicar por $A^t$ en ambos lados para asi obtener una solucion de $\hat{b}$.
 
-Tip: Puede que se parezca mucho a algo que vieron en Álgebra...
 
 #### 2. Ejercicio 2
 
