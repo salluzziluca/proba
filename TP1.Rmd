@@ -8,7 +8,7 @@ output: pdf_document
 
 ## Estimadores de Máxima Verosimilitud
 
-Nro. de grupo:
+Nro. de grupo: 14
 
 Integrantes:
 
@@ -56,10 +56,27 @@ $$
 
 Encontrar analíticamente el estimador de máxima verosimilitud para $\beta_0,\beta_1$, a partir de una muestra aleatoria de tamaño $n$.
 
-Observación: Si te sentís cómodo usando LaTex, podés hacer el desarrollo acá abajo.
 
 $$
-L(\beta_0 , \beta_1) = \prod_{i=1}^n f_{\beta_0 , \beta_1}(x_i)= \prod_{i=1}^n \mathcal{N}(-\beta_0 +\beta_1 .x_i, \sigma) =  \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(y_i-\beta_0 +\beta_1 .x_i)^2}
+L(\beta_{0}, \beta_{1})=\prod^{n}_{i=1} \frac{1}{\sqrt{ 2 \pi } \sigma}e^{\frac{1}{2 \sigma^2}(y_{i}+\beta_{0}+\beta_{1}x_{i})^2}$$
+$$\ln(L(\beta_{0}, \beta_{1}))=\frac{n}{\sqrt{ 2 \pi  }\sigma}+ \sum^{n}_{i=1}\frac {1}{2 \sigma^2}(-y_{i}+\beta_{0}+\beta_{1}x_{i})^2
+$$
+
+## I)
+$$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{0}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})=0$$
+$$\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})=0$$
+$$\hat{\beta}_{0}=\frac{1}{n }\sum^{n}_{i=1}(y_{i}-\hat{\beta}_{1}x_{i})$$
+
+## II)
+
+$$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{1}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})x_{i}=0$$
+utilizando I)
+$$
+\sum^{n}_{i=1}\left[ (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i} \right]=0
+$$
+
+$$
+\hat{\beta}_{1}=\frac{\sum^{n}_{i=1}(x_{i}-\bar{x}).(y_{i}-\bar{y})}{\sum^{n}_{i=1}(x_{i}-\bar{x})^2}
 $$
 
 ##### b. (Opcional) ¿El resultado les resulta conocido?
@@ -134,4 +151,3 @@ abline(a = beta0, b = beta1, col = "aquamarine3", lw = 3)
 
 ### Conclusiones
 
-Usen este espacio para finalizar el trabajo práctico con sus comentarios y conclusiones finales.
