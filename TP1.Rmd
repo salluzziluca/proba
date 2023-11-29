@@ -151,3 +151,4 @@ abline(a = beta0, b = beta1, col = "aquamarine3", lw = 3)
 
 ### Conclusiones
 
+Durante el desarrollo de este trabajo pudimos ver como un estimador de máxima verosimilitud es muy útil para estimar parametros de un modelo de regresion lineal. Sin embargo, en este trabajo no tuvimos en cuenta que el estimador es sesgado, lo cual deberíamos tener en cuenta al momento realizar predicciones de la felicidad respecto a los ingresos.
