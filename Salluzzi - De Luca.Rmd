@@ -58,9 +58,14 @@ Encontrar analíticamente el estimador de máxima verosimilitud para $\beta_0,\b
 
 
 $$
-L(\beta_{0}, \beta_{1})=\prod^{n}_{i=1} \frac{1}{\sqrt{ 2 \pi } \sigma}e^{\frac{1}{2 \sigma^2}(y_{i}+\beta_{0}+\beta_{1}x_{i})^2}$$
+L(\beta_{0}, \beta_{1})=\prod^{n}_{i=1} \frac{1}{\sqrt{ 2 \pi } \sigma}e^{-\frac{1}{2 \sigma^2}(y_{i}-\beta_{0}-\beta_{1}x_{i})^2}$$
+
+Aplicando logaritmo natural a la funcion de verosimilitud y desarrollando la expresion, se obtiene:
+
 $$\ln(L(\beta_{0}, \beta_{1}))=\frac{n}{\sqrt{ 2 \pi  }\sigma}+ \sum^{n}_{i=1}\frac {1}{2 \sigma^2}(-y_{i}+\beta_{0}+\beta_{1}x_{i})^2
 $$
+
+Ahora, para obtener el estimador de maxima verosimilitud, se debe derivar la expresion anterior respecto a $\beta_{0}$ y $\beta_{1}$, igualar a cero y despejar $\beta_{0}$ y $\beta_{1}$, respectivamente.
 
 ## I)
 $$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{0}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})=0$$
@@ -71,9 +76,22 @@ $$\hat{\beta}_{0}=\frac{1}{n }\sum^{n}_{i=1}(y_{i}-\hat{\beta}_{1}x_{i})$$
 
 $$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{1}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})x_{i}=0$$
 utilizando I)
+
 $$
-\sum^{n}_{i=1}\left[ (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i} \right]=0
+\sum^{n}_{i=1}\left (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i} \right=0
 $$
+
+$$
+\sum^{n}_{i=1}\left (y_{i}-\frac{1}{n}\sum^{n}_{j=1}y_{j}+\frac{1}{n}\hat{\beta}_{1}\sum^{n}_{j=1}x_{j}-\beta_{1}x_{i})x_{i} \right=0
+$$
+
+Como tenemos la sumatoria de los $y_{j}$ sobre $\frac{1}{n}$ esto es lo mismo que el promedio de los $y_{j}$, y lo mismo sucede con $x_{j}$ de esta manera obtenemos:
+
+$$
+\sum^{n}_{i=1}\left (y_{i}-\frac{1}{n}\bar{y}+\frac{1}{n}\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i} \right=0
+$$
+
+Finalmente podemos despejar $\hat{\beta}_{1}$ de la siguiente manera:
 
 $$
 \hat{\beta}_{1}=\frac{\sum^{n}_{i=1}(x_{i}-\bar{x}).(y_{i}-\bar{y})}{\sum^{n}_{i=1}(x_{i}-\bar{x})^2}
@@ -121,7 +139,7 @@ hist(XY[, 2], main = "Histograma de happiness", freq = FALSE) # Graficamos la co
 
 
 Se puede decir, observando el scatter plot, que la variable `income` y `happiness` tienen una relación lineal positiva. Es decir, a medida que aumenta el ingreso, aumenta la felicidad. 
-Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), equivale al sistema lineal de dos ecuaciones con dos incógnitas. Por lo tanto, se puede resolver el sistema y obtener los valores de $\beta_0$ y $\beta_1$.
+Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), de esta manera podemos buscar una si existe una relacion lineal entre `income` y `happiness` de la forma  $$Y = \beta_0 + \beta_1X_1$$. De esta si encontramos los valores de $\beta_0$ y $\beta_1$ podriamo predecir valores de `happiness` a partir de valores de `income`.
 
 Luego, en el histrograma de `income` se puede observar que la distribución de los datos aparenta tener una distribucion uniforme, con algunas perturbaciones.
 
@@ -151,4 +169,4 @@ abline(a = beta0, b = beta1, col = "aquamarine3", lw = 3)
 
 ### Conclusiones
 
-Durante el desarrollo de este trabajo pudimos ver como un estimador de máxima verosimilitud es muy útil para estimar parametros de un modelo de regresion lineal. Sin embargo, en este trabajo no tuvimos en cuenta que el estimador es sesgado, lo cual deberíamos tener en cuenta al momento realizar predicciones de la felicidad respecto a los ingresos.
+Durante el desarrollo de este trabajo pudimos ver como un estimador de máxima verosimilitud es muy útil para estimar parametros de un modelo de regresion lineal. Sin embargo, en este trabajo no tuvimos en cuenta que el estimador tiene tambien cierto grado al momento de predecir la felicidad, lo cual al momento de realizar debe ser tenido en cuenta, ya que si bien el estimador es el mejor estimador posible, no predice de manera perfecta.
