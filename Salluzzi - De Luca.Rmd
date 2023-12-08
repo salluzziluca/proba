@@ -89,21 +89,25 @@ $$
 Como tenemos la sumatoria de los $y_{j}$ sobre $\frac{1}{n}$ esto es lo mismo que el promedio de los $y_{j}$, y lo mismo sucede con $x_{j}$ de esta manera obtenemos:
 
 $$
-\sum^{n}_{i=1} (y_{i}-\bar{y}+\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i}=0
+\sum^{n}_{i=1} (y_{i}-\bar{y}+\hat{\beta}_{1}\bar{x}-\hat{\beta}_{1}x_{i})x_{i}=0
 $$
 
 Finalmente podemos despejar $\hat{\beta}_{1}$ de la siguiente manera:
 
 $$
-\sum^{n}_{i=1} (y_{i}-\bar{y})+\hat{\beta}_{1}\sum^{n}_{i=1} (\bar{x}-x_{i})=0
+\sum^{n}_{i=1} (y_{i}x_{i}-\bar{y}x_{i}+\hat{\beta}_{1}\bar{x}x_{i}-x_{i}^{2})=0
 $$
 
 $$
-\hat{\beta}_{1}\sum^{n}_{i=1} (x_{i}-\bar{x})=\sum^{n}_{i=1} (y_{i}-\bar{y})
+\sum^{n}_{i=1} (y_{i}x_{i}-\bar{y}x_{i})+\hat{\beta}_{1}\sum^{n}_{i=1} (\bar{x}x_{i}-x_{i}^{2})=0
 $$
 
 $$
-\hat{\beta}_{1}=\frac{\sum^{n}_{i=1}(y_{i}-\bar{y})}{\sum^{n}_{i=1}(x_{i}-\bar{x})}
+\hat{\beta}_{1}\sum^{n}_{i=1} (\bar{x}x_{i}-x_{i}^{2})= - \sum^{n}_{i=1} (y_{i}x_{i}-\bar{y}x_{i})
+$$
+
+$$
+\hat{\beta}_{1}=\frac{\sum^{n}_{i=1} (y_{i}x_{i}-\bar{y}x_{i})}{\sum^{n}_{i=1} (x_{i}^{2}-\bar{x}x_{i})}
 $$
 
 ##### b. (Opcional) ¿El resultado les resulta conocido?
@@ -163,7 +167,7 @@ $$
 Usar las herramientas de R para calcular una estimación de los valores de $\beta_0$ y $\beta_1$ basada en los datos cargados. Podés hacer esto en la siguente celda. Remplazá los valores de `NULL` por las expresiones correspondientes, también podes agregar cálculos auxiliares en líneas anteriores.
 
 ```{r}
-beta1 <- sum((XY$happiness - mean(XY$happiness))) / sum(XY$income - mean(XY$income))
+beta1 <- sum(XY$income * XY$happiness - mean(XY$happiness) * XY$income) /  sum(XY$income ^ 2 - mean(XY$income) * XY$income)
 
 
 beta0 <- sum(XY$happiness) / nrow(XY) - beta1 * sum(XY$income) / nrow(XY)

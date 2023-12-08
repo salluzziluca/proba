@@ -30,3 +30,16 @@ estimador_q2 <- function(muestra) {
 }
 
 plot(estimador_q1(simular_muestra(1000)))
+
+
+
+XY <- read.csv("income.data.csv", row.names = 1)
+#beta1 <- sum((XY$income - mean(XY$income)) * (XY$happiness - mean(XY$happiness))) / sum((XY$income - mean(XY$income)) ^ 2)
+
+beta1 <- sum(XY$income * XY$happiness - mean(XY$happiness) * XY$income) /  sum(XY$income ^ 2 - mean(XY$income) * XY$income)
+
+#beta1 <- sum(XY$happiness - mean(XY$happiness)) / sum(XY$income - mean(XY$income))
+
+beta0 <- sum(XY$happiness) / nrow(XY) - beta1 * sum(XY$income) / nrow(XY)
+plot(XY)
+abline(a = beta0, b = beta1, col = "aquamarine3", lw = 3)
