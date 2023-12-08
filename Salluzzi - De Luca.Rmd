@@ -75,20 +75,21 @@ $$\hat{\beta}_{0}=\frac{1}{n }\sum^{n}_{i=1}(y_{i}-\hat{\beta}_{1}x_{i})$$
 ## II)
 
 $$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{1}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})x_{i}=0$$
+
 utilizando I)
 
 $$
-\sum^{n}_{i=1}\left (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i} \right=0
+\sum^{n}_{i=1} (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i}
 $$
 
 $$
-\sum^{n}_{i=1}\left (y_{i}-\frac{1}{n}\sum^{n}_{j=1}y_{j}+\frac{1}{n}\hat{\beta}_{1}\sum^{n}_{j=1}x_{j}-\beta_{1}x_{i})x_{i} \right=0
+\sum^{n}_{i=1} (y_{i}-\frac{1}{n}\sum^{n}_{j=1}y_{j}+\frac{1}{n}\hat{\beta}_{1}\sum^{n}_{j=1}x_{j}-\beta_{1}x_{i})x_{i}
 $$
 
 Como tenemos la sumatoria de los $y_{j}$ sobre $\frac{1}{n}$ esto es lo mismo que el promedio de los $y_{j}$, y lo mismo sucede con $x_{j}$ de esta manera obtenemos:
 
 $$
-\sum^{n}_{i=1}\left (y_{i}-\frac{1}{n}\bar{y}+\frac{1}{n}\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i} \right=0
+\sum^{n}_{i=1} (y_{i}-\bar{y}+\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i}
 $$
 
 Finalmente podemos despejar $\hat{\beta}_{1}$ de la siguiente manera:
