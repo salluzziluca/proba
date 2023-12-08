@@ -76,26 +76,34 @@ $$\hat{\beta}_{0}=\frac{1}{n }\sum^{n}_{i=1}(y_{i}-\hat{\beta}_{1}x_{i})$$
 
 $$\frac{\partial \ln(L(\beta_{0}, \beta_{1}))}{\partial \beta_{1}}=\frac{1}{2 \sigma^2 }\sum^{n}_{i=1}(-y_{i}+\beta_{0}+\beta_{1}x_{i})x_{i}=0$$
 
-utilizando I)
+##### utilizando I)
+
+$$ 
+\sum^{n}_{i=1} (y_{i}-\frac{1}{n}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i}=0
+$$
 
 $$
-\sum^{n}_{i=1} (y_{i-\frac{1}{n}}\sum^{n}_{j=1}(y_{j}-\hat{\beta}_{1}x_{j})-\beta_{1}x_{i})x_{i}
-$$
-
-$$
-\sum^{n}_{i=1} (y_{i}-\frac{1}{n}\sum^{n}_{j=1}y_{j}+\frac{1}{n}\hat{\beta}_{1}\sum^{n}_{j=1}x_{j}-\beta_{1}x_{i})x_{i}
+\sum^{n}_{i=1} (y_{i}-\frac{1}{n}\sum^{n}_{j=1}y_{j}+\frac{1}{n}\hat{\beta}_{1}\sum^{n}_{j=1}x_{j}-\beta_{1}x_{i})x_{i}=0
 $$
 
 Como tenemos la sumatoria de los $y_{j}$ sobre $\frac{1}{n}$ esto es lo mismo que el promedio de los $y_{j}$, y lo mismo sucede con $x_{j}$ de esta manera obtenemos:
 
 $$
-\sum^{n}_{i=1} (y_{i}-\bar{y}+\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i}
+\sum^{n}_{i=1} (y_{i}-\bar{y}+\hat{\beta}_{1}\bar{x}-\beta_{1}x_{i})x_{i}=0
 $$
 
 Finalmente podemos despejar $\hat{\beta}_{1}$ de la siguiente manera:
 
 $$
-\hat{\beta}_{1}=\frac{\sum^{n}_{i=1}(x_{i}-\bar{x}).(y_{i}-\bar{y})}{\sum^{n}_{i=1}(x_{i}-\bar{x})^2}
+\sum^{n}_{i=1} (y_{i}-\bar{y})+\hat{\beta}_{1}\sum^{n}_{i=1} (\bar{x}-x_{i})=0
+$$
+
+$$
+\hat{\beta}_{1}\sum^{n}_{i=1} (x_{i}-\bar{x})=\sum^{n}_{i=1} (y_{i}-\bar{y})
+$$
+
+$$
+\hat{\beta}_{1}=\frac{\sum^{n}_{i=1}(y_{i}-\bar{y})}{\sum^{n}_{i=1}(x_{i}-\bar{x})}
 $$
 
 ##### b. (Opcional) ¿El resultado les resulta conocido?
@@ -140,7 +148,7 @@ hist(XY[, 2], main = "Histograma de happiness", freq = FALSE) # Graficamos la co
 
 
 Se puede decir, observando el scatter plot, que la variable `income` y `happiness` tienen una relación lineal positiva. Es decir, a medida que aumenta el ingreso, aumenta la felicidad. 
-Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), de esta manera podemos buscar una si existe una relacion lineal entre `income` y `happiness` de la forma  $$Y = \beta_0 + \beta_1X_1$$. De esta si encontramos los valores de $\beta_0$ y $\beta_1$ podriamo predecir valores de `happiness` a partir de valores de `income`.
+Al tener únicamente la variable objetivo (`happiness`) y una sola predictora (`income`), podemos buscar si existe una relacion lineal entre `income` y `happiness` de la forma  $y= \beta_0 + \beta_1x_1$, y si encontramos los valores de $\beta_0$ y $\beta_1$ podriamos predecir valores de `happiness` a partir de valores de `income`.
 
 Luego, en el histrograma de `income` se puede observar que la distribución de los datos aparenta tener una distribucion uniforme, con algunas perturbaciones.
 
@@ -155,7 +163,7 @@ $$
 Usar las herramientas de R para calcular una estimación de los valores de $\beta_0$ y $\beta_1$ basada en los datos cargados. Podés hacer esto en la siguente celda. Remplazá los valores de `NULL` por las expresiones correspondientes, también podes agregar cálculos auxiliares en líneas anteriores.
 
 ```{r}
-beta1 <- sum((XY$income - mean(XY$income)) * (XY$happiness - mean(XY$happiness))) / sum((XY$income - mean(XY$income))^2)
+beta1 <- sum((XY$happiness - mean(XY$happiness))) / sum(XY$income - mean(XY$income))
 
 
 beta0 <- sum(XY$happiness) / nrow(XY) - beta1 * sum(XY$income) / nrow(XY)
